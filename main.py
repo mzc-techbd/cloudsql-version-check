@@ -23,10 +23,10 @@ def get_project_num(org_id):
 def project_name_split(project):
     return project.split('/',1)[1] # project/12345678 to 12345678
 
-def get_cloudsql_version(project):
+def get_cloudsql_version(project_id):
     credentials = GoogleCredentials.get_application_default()
     service = discovery.build('sqladmin', 'v1beta4', credentials=credentials)
-    project = project 
+    project = project_id 
     request = service.instances().list(project=project)
     results = []
     
