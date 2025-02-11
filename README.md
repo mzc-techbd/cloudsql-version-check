@@ -1,2 +1,8 @@
 # cloudsql-version-check
 AssetInventory 및 REST 를 활용한 org 내 Cloud SQL Instance의 Version 확인
+
+# 1. Git 가져오기
+Git Clone 
+
+# 2. 실행
+python main.py
