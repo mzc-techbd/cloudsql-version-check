@@ -8,9 +8,7 @@ from oauth2client.client import GoogleCredentials
 instance_versions = ["MYSQL_5_6", "MYSQL_5_7", "POSTGRES_9_6", "POSTGRES_10", "POSTGRES_11", "POSTGRES_12"]
 
 def get_project_num(org_id):
-    #org 내의 sqladmin.googleapis.com이 켜져있는 프로젝트 get
     client = asset_v1.AssetServiceClient()
-    
     scope = f"organizations/{org_id}"
     query = f"sqladmin.googleapis.com AND state:enabled"
 
@@ -27,15 +25,11 @@ def project_name_split(project_name):
 
 def get_cloudsql_version(parent_project):
     credentials = GoogleCredentials.get_application_default()
-
     service = discovery.build('sqladmin', 'v1beta4', credentials=credentials)
-
-    # Project ID of the project for which to list Cloud SQL instances.
     project = parent_project 
-
     request = service.instances().list(project=project)
-
     results = []
+    
     while request is not None:
         response = request.execute()
 
@@ -60,7 +54,7 @@ def get_cloudsql_version(parent_project):
         pprint(results)
 
 def main():
-    ORGANIZATION_ID = '541096552061'
+    ORGANIZATION_ID = '' # 0123456789
     
     get_project_num(ORGANIZATION_ID)
     
