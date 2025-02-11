@@ -7,7 +7,7 @@ Google Docs : https://cloud.google.com/sql/docs/mysql/extended-support
 Git Clone https://github.com/mzc-techbd/cloudsql-version-check.git
 
 # 2. ORGANIZATION_ID 변경
-main() 함수 ORGANIZATION_ID 변경하기
+main() 함수 ORGANIZATION_ID 변경하기 (e.g., 0123456789)
 
 # 3. 실행
 python main.py
