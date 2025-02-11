@@ -20,13 +20,13 @@ def get_project_num(org_id):
     for response in client.search_all_resources(request=request):
         get_cloudsql_version(project_name_split(response.project))
 
-def project_name_split(project_name):
-    return project_name.split('/',1)[1] # project/12345678 to 12345678
+def project_name_split(project):
+    return project.split('/',1)[1] # project/12345678 to 12345678
 
-def get_cloudsql_version(parent_project):
+def get_cloudsql_version(project):
     credentials = GoogleCredentials.get_application_default()
     service = discovery.build('sqladmin', 'v1beta4', credentials=credentials)
-    project = parent_project 
+    project = project 
     request = service.instances().list(project=project)
     results = []
     
@@ -41,7 +41,7 @@ def get_cloudsql_version(parent_project):
             for instance_version in instance_versions:
                 if database_instance["databaseVersion"] == instance_version:
                     result = {
-                        "project_num": parent_project,
+                        "project_num": project,
                         "project": database_instance["project"],
                         "displayName": database_instance["name"],
                         "databaseVersion": database_instance["databaseVersion"],
