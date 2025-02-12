@@ -35,9 +35,13 @@ def get_cloudsql_version(project_id):
         try:
             response = request.execute()
         except Exception as e:
-            pprint(f"Project : {project}")
-            pprint(f"Error : {e}")
-            pprint("-" * 60)
+            exception_http = f"{e}"
+            if "HttpError 403 when requesting" in exception_http:
+                break
+
+            print(f"Project : {project}")
+            print(f"Error : {e}")
+            print("-" * 60)
 
             break
 
@@ -60,12 +64,11 @@ def get_cloudsql_version(project_id):
 
     if len(results) != 0:
         pprint(results)
-        pprint("-" * 60)
+        print("-" * 60)
 
 
 def main():
-    #ORGANIZATION_ID = '541096552061' # 97988722293
-    ORGANIZATION_ID = '97988722293' # 97988722293 
+    ORGANIZATION_ID = '97988722293'
     
     get_project_num(ORGANIZATION_ID)
     
