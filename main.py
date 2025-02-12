@@ -25,7 +25,7 @@ def project_name_split(project):
 
 def get_cloudsql_version(project_id):
     credentials = GoogleCredentials.get_application_default()
-    service = discovery.build('sqladmin', 'v1beta4', credentials=credentials)
+    service = discovery.build('sqladmin', 'v1', credentials=credentials)
     project = project_id 
     request = service.instances().list(project=project)
     
@@ -72,4 +72,3 @@ def main():
     
 if __name__=="__main__":
     main()
-
