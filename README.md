@@ -21,5 +21,5 @@ python main.py
 
 ## 코드 설명
 - Google Cloud Asset Inventory API를 사용하여 sqladmin.googleapis.com 활성화 되어있는 프로젝트 추출
-- REST API 사용하여 추출된 프로젝트 내 인스턴스 조회
+- REST 사용하여 추출된 프로젝트 내 인스턴스 조회
   - docs: https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances/list
