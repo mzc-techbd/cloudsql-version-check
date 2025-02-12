@@ -28,10 +28,18 @@ def get_cloudsql_version(project_id):
     service = discovery.build('sqladmin', 'v1beta4', credentials=credentials)
     project = project_id 
     request = service.instances().list(project=project)
+    
     results = []
     
     while request is not None:
-        response = request.execute()
+        try:
+            response = request.execute()
+        except Exception as e:
+            pprint(f"Project : {project}")
+            pprint(f"Error : {e}")
+            pprint("-" * 60)
+
+            break
 
         if len(response) == 0:
             break
@@ -52,11 +60,15 @@ def get_cloudsql_version(project_id):
 
     if len(results) != 0:
         pprint(results)
+        pprint("-" * 60)
+
 
 def main():
-    ORGANIZATION_ID = '' # 0123456789
+    #ORGANIZATION_ID = '541096552061' # 97988722293
+    ORGANIZATION_ID = '97988722293' # 97988722293 
     
     get_project_num(ORGANIZATION_ID)
     
 if __name__=="__main__":
     main()
+
