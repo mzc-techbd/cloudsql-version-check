@@ -40,16 +40,14 @@ def get_cloudsql_version(project_id):
                 break
 
             print(f"Project : {project}")
-            print(f"Error : {e}")
+            pprint(f"Error : {e}")
             print("-" * 60)
-
             break
 
         if len(response) == 0:
             break
 
         for database_instance in response['items']:
-            # TODO: Change code below to process each `database_instance` resource:
             for instance_version in instance_versions:
                 if database_instance["databaseVersion"] == instance_version:
                     result = {
@@ -69,7 +67,6 @@ def get_cloudsql_version(project_id):
 
 def main():
     ORGANIZATION_ID = '97988722293'
-    
     get_project_num(ORGANIZATION_ID)
     
 if __name__=="__main__":
